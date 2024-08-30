@@ -25,6 +25,9 @@ class DonationManager
     public function addDonation(string $donorName, float $amount, int $charityId): void
     {
         try {
+            Validator::validateString($donorName, "Donor Name");
+            Validator::validateAmount($amount);
+
             $donation = new Donation($donorName, $amount, $charityId);
             $this->donations[$donation->getId()] = $donation;
             $this->saveDonationsToJson();
