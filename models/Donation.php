@@ -11,13 +11,13 @@ class Donation
     private $dateTime;
 
 
-    public function __construct(string $donorName, float $amount, int $charityId, int $id = null)
+    public function __construct(string $donorName, float $amount, int $charityId, ?int $id = null, ?DateTime $dateTime = null)
     {
         if ($id !== null) {
             $this->id = $id;
 
             if ($id >= self::$idCounter) {
-                self::$idCounter = $id++;
+                self::$idCounter = $id + 1;
             }
         } else {
             $this->id = self::$idCounter++;
@@ -26,7 +26,7 @@ class Donation
         $this->donorName = $donorName;
         $this->amount = $amount;
         $this->charityId = $charityId;
-        $this->dateTime = new DateTime();
+        $this->dateTime = $dateTime ?? new DateTime();
     }
 
 
@@ -54,6 +54,12 @@ class Donation
     public function getDateTime(): DateTime
     {
         return $this->dateTime;
+    }
+
+    // Set ID
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
 
