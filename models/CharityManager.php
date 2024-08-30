@@ -29,6 +29,10 @@ class CharityManager
     public function addCharity(string $name, string $email): void
     {
         try {
+            Validator::validateString($name, "Charity Name");
+            $email = trim($email);
+            Validator::validateEmail($email);
+
             $charity = new Charity($name, $email, null);
             $this->charities[$charity->getId()] = $charity;
             $this->saveCharitiesToJson();
@@ -84,6 +88,9 @@ class CharityManager
         if (isset($this->charities[$id])) {
             $charity = $this->charities[$id];
             try {
+                Validator::validateString($newName, "Charity Name");
+                Validator::validateEmail($newEmail);
+
                 $charity->setName($newName);
                 $charity->setRepresentativeEmail($newEmail);
                 $this->saveCharitiesToJson();
