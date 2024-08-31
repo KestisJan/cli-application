@@ -22,13 +22,12 @@ class DonationManager
      * 
      * @return void
      */
-    public function addDonation(string $donorName, float $amount, int $charityId): void
+    public function addDonation(Donation $donation): void
     {
         try {
-            Validator::validateString($donorName, "Donor Name");
-            Validator::validateAmount($amount);
+            Validator::validateString($donation->getDonorName(), "Donor Name");
+            Validator::validateAmount($donation->getAmount());
 
-            $donation = new Donation($donorName, $amount, $charityId);
             $this->donations[$donation->getId()] = $donation;
             $this->saveDonationsToJson();
             echo "Donation added successfully:\n" . $donation->displayDonationInfo() . "\n";
@@ -91,13 +90,20 @@ class DonationManager
             $data = $jsonHandler->loadData();
 
             foreach ($data as $donationData) {
+                $donorName = isset($donationData['donorName']) ? (string)$donationData['donorName'] : '';
+                $amount = isset($donationData['amount']) ? (float)$donationData['amount'] : 0.0;
+                $charityId = isset($donationData['charityId']) ? (int)$donationData['charityId'] : 0;
+                $id = isset($donationData['id']) ? (int)$donationData['id'] : null;
+                $dateTime = isset($donationData['dateTime']) ? new DateTime($donationData['dateTime']) : null;
+
                 $donation = new Donation(
-                    $donationData['donorName'],
-                    $donationData['amount'],
-                    $donationData['charityId'],
-                    new DateTime($donationData['dateTime'])
+                    $donorName,
+                    $amount,
+                    $charityId,
+                    $id,
+                    $dateTime
                 );
-                $donation->setId($donationData['id']);
+
                 $this->donations[$donation->getId()] = $donation;
             }
         }

@@ -29,6 +29,9 @@ class Charity
         } else {
             $this->id = self::$idCounter++;
         }
+
+        $this->name = $name;
+        $this->representativeEmail = $representativeEmail;
     }
 
     // Getters & Setters

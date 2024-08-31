@@ -25,14 +25,18 @@ class Donation
         Validator::validateString($donorName, "Donor Name");
         Validator::validateAmount($amount);
 
-        if ($id !== null) {
+        echo "Start 1";
+        if ($id === null) {
+            echo "#1 ID -> {$this->id}\n";
+
+            $this->id = self::$idCounter++;
+            echo "#2 ID -> {$this->id}\n";
+        } else {
             $this->id = $id;
 
             if ($id >= self::$idCounter) {
                 self::$idCounter = $id + 1;
             }
-        } else {
-            $this->id = self::$idCounter++;
         }
 
         $this->donorName = $donorName;
