@@ -8,9 +8,18 @@ class Charity
     private $name;
     private $representativeEmail;
 
-
+    /**
+     * Constructor to initialize a new Charity object.
+     * 
+     * @param string $name Name of the charity.
+     * @param string $representativeEmail Representative's email.
+     * @param int|null $id Optional ID of the charity. If not provided, a new ID is generated.
+     */
     public function __construct(string $name, string $representativeEmail, ?int $id)
     {
+        Validator::validateString($name, "Charity Name");
+        Validator::validateEmail($representativeEmail);
+
         if ($id !== null) {
             $this->id = $id;
 
@@ -20,6 +29,9 @@ class Charity
         } else {
             $this->id = self::$idCounter++;
         }
+
+        $this->name = $name;
+        $this->representativeEmail = $representativeEmail;
     }
 
     // Getters & Setters
@@ -35,6 +47,8 @@ class Charity
 
     public function setName(string $name): void
     {
+        Validator::validateString($name, "Charity Name");
+
         $this->name = $name;
     }
 
@@ -45,6 +59,8 @@ class Charity
 
     public function setRepresentativeEmail(string $newEmail): void
     {
+        Validator::validateEmail($newEmail);
+
         $this->representativeEmail = $newEmail;
     }
 
