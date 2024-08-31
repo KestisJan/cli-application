@@ -41,8 +41,7 @@ php index.php -e '1,New Name,newemail@domain.com'
 php index.php -n 'John Doe,100,1'
 
 ** Import Charities from CSV 
-Note that all imported files will be placed in the data directory.
-
+Note that all imported files need to be placed in the data directory.
 php index.php -i 'charities.csv'
 
 
