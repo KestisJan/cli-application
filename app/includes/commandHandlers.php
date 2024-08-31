@@ -1,6 +1,29 @@
 <?php
 
 /**
+ * Handles command-line options and maps them to the corresponding functions.
+ *
+ * @param array $options Command-line options.
+ * @param DonationManager $donationManager The DonationManager instance.
+ * @param CharityManager $charityManager The CharityManager instance.
+ */
+function handleCommandOptions($options, $donationManager, $charityManager) {
+    if (isset($options['a'])) {
+        handleAddCharity($charityManager);
+    } elseif (isset($options['v'])) {
+        handleViewCharities($charityManager);
+    } elseif (isset($options['e'])) {
+        handleEditCharity($charityManager);
+    } elseif (isset($options['d'])) {
+        handleDeleteCharity($charityManager);
+    } elseif (isset($options['n'])) {
+        handleAddDonation($donationManager, $charityManager);
+    } elseif (isset($options['i'])) {
+        handleImportCharitiesFromCSV($charityManager);
+    }
+}
+
+/**
  * Handles adding a new charity by reading user input.
  *
  * @param CharityManager $charityManager The CharityManager instance to handle charity operations.
@@ -23,7 +46,6 @@ function handleAddCharity($charityManager) {
     } else {
         echo "Invalid input. Provide both name and email separated by a comma.\n";
     }
-    goBack();
 }
 
 /**
@@ -33,7 +55,6 @@ function handleAddCharity($charityManager) {
  */
 function handleViewCharities($charityManager) {
     $charityManager->viewCharities();
-    goBack();
 }
 
 /**
@@ -56,7 +77,6 @@ function handleEditCharity($charityManager) {
     } else {
         echo "Invalid input. Provide ID, new name, and new email separated by commas.\n";
     }
-    goBack();
 }
 
 /**
@@ -73,7 +93,6 @@ function handleDeleteCharity($charityManager) {
     } else {
         echo "Invalid input. Provide a numeric charity ID to delete.\n";
     }
-    goBack();
 }
 
 /**
@@ -101,7 +120,6 @@ function handleAddDonation($donationManager, $charityManager) {
     } else {
         echo "Invalid input. Provide donor name, amount, and charity ID separated by commas.\n";
     }
-    goBack();
 }
 
 
@@ -124,7 +142,6 @@ function handleImportCharitiesFromCSV($charityManager) {
     } else {
         echo "File not found: $filepath\n";
     }
-    goBack();
 }
 
 ?>
