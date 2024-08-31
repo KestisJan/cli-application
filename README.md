@@ -20,35 +20,29 @@ This Charity and Donation Management System allows users to manage charities and
    ```bash
    git clone <repository-url>
 
-   ```bash
    cd <project-directory>
 
 ## Usage
 
-** Add a Charity **
+** Add a Charity
 ```bash
 php index.php -a 'Red Cross,info@redcross.org'
 
-** View Charities **
-```bash
+** View Charities
 php index.php -v
 
-** Edit a Charity **
-```bash
+** Edit a Charity
 php index.php -e '1,New Name,newemail@domain.com'
 
-** Delete a Charity **
-```bash
+** Delete a Charity
 php index.php -e '1,New Name,newemail@domain.com'
 
-** Add a Donation **
-```bash
+** Add a Donation
 php index.php -n 'John Doe,100,1'
 
-** Import Charities from CSV **
+** Import Charities from CSV 
 Note that all imported files will be placed in the data directory.
 
-```bash
 php index.php -i 'charities.csv'
 
 
