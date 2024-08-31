@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "donorName": "donor",
+        "amount": 1,
+        "charityId": 1,
+        "dateTime": "2024-08-31 09:12:56"
+    },
+    {
+        "id": 2,
+        "donorName": "donor1",
+        "amount": 2,
+        "charityId": 1,
+        "dateTime": "2024-08-31 09:13:08"
+    }
+]

@@ -92,7 +92,7 @@ function handleAddDonation($donationManager, $charityManager) {
         $donorName = trim($donorName);
         if (is_numeric($amount) && is_numeric($charityId) && $donorName) {
             $donation = new Donation($donorName, (float)$amount, (int)$charityId);
-            $donationManager->addDonation($donorName, $amount, $charityId);
+            $donationManager->addDonation($donation);
             $charityManager->addDonationToCharity($donation);
             echo "Donation added successfully.\n";
         } else {

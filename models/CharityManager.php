@@ -172,10 +172,14 @@ class CharityManager
         $data = $jsonHandler->loadData();
 
         foreach ($data as $charityData) {
+            $name = isset($charityData['name']) ? (string)$charityData['name'] : '';
+            $representativeEmail = isset($charityData['representativeEmail']) ? (string)$charityData['representativeEmail'] : '';
+            $id = isset($charityData['id']) ? (int)$charityData['id'] : null;
+
             $charity = new Charity(
-                $charityData['id'],
-                $charityData['name'],
-                $charityData['representativeEmail'],
+                $name,
+                $representativeEmail,
+                $id
             );
             $this->charities[$charity->getId()] = $charity;
         }
