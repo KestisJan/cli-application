@@ -8,7 +8,8 @@ function displayMenu()
     echo "3. Edit Charity\n";
     echo "4. Delete Charity\n";
     echo "5. Add Donation \n";
-    echo "6. Exit\n";
+    echo "6. Import Charities from CSV\n";
+    echo "7. Exit\n";
     echo "Enter your choice: "; 
 }
 

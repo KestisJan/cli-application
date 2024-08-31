@@ -16,9 +16,7 @@ function ensureDirectoryExists(string $path): void
             $error = error_get_last();
             echo "Failed to create directory: $path. Error: " . $error['message'] . "\n";
         }
-    } else {
-        echo "Directory already exists: $path\n";
-    }
+    } 
 }
 
 ?>

@@ -104,4 +104,27 @@ function handleAddDonation($donationManager, $charityManager) {
     goBack();
 }
 
+
+/**
+ * Handle the import of charities from a CSV file.
+ * 
+ * Prompts the user for the CSV file name, constructs the file path,
+ * and imports charities using the CharityManager instance.
+ * 
+ * @param CharityManager $charityManager Instance of CharityManager used for importing charities.
+ */
+function handleImportCharitiesFromCSV($charityManager) {
+    echo "Enter CSV file name: ";
+    $filename = trim(fgets(STDIN));
+    $filepath = 'data/' . $filename;
+    
+    if (file_exists($filepath)) {
+        $charityManager->importCharitiesFromCSV($filepath);
+        echo "Charities imported from CSV successfully.\n";
+    } else {
+        echo "File not found: $filepath\n";
+    }
+    goBack();
+}
+
 ?>

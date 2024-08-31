@@ -5,6 +5,7 @@ class CharityManager
     private $charities = [];
     private $jsonFile = 'data/charities_data.json';
     private $donationManager;
+    private $csvHandler;
 
 
     /**
@@ -16,6 +17,7 @@ class CharityManager
     {
         $this->donationManager = $donationManager;
         $this->loadCharitiesFromJson();
+        $this->csvHandler = new CsvHandler($this);
     }
 
     /**
@@ -205,6 +207,21 @@ class CharityManager
             $jsonHandler->saveData($data);
         }
     }
+
+
+    /**
+     * Import charities from a CSV file.
+     * 
+     * @param string $filepath Path to the CSV file.
+     * 
+     * @return void
+     */
+    public function importCharitiesFromCSV(string $filepath): void
+    {
+        $this->csvHandler->importCharitiesFromCSV($filepath);
+    }
+
 }
+
 
 ?>
