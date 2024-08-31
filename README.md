@@ -24,8 +24,8 @@ This Charity and Donation Management System allows users to manage charities and
 
 ## Usage
 
-** Add a Charity
 ```bash
+** Add a Charity
 php index.php -a 'Red Cross,info@redcross.org'
 
 ** View Charities
